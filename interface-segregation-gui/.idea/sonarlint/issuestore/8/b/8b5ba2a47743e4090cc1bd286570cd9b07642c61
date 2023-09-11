@@ -1,3 +1,4 @@
 
-M
-java:S1128"+Remove this unused import 'java.awt.event'.(Ã®ÎÙÿÿÿÿÿ8šË§–¨1
+U	java:S106"9Replace this use of System.out or System.err by a logger.(Üßİ¬8şŸüš¨1
+Q
+java:S3985'"4Remove this unused private "MyActionListener" class.(ûú‚Ş8¼ôÀ›¨1
