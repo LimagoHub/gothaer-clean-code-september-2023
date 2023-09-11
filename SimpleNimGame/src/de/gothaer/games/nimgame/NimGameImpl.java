@@ -8,6 +8,7 @@ public class NimGameImpl implements Game {
     private final Scanner scanner = new Scanner(System.in);
     private int stones;
 
+    private int zug;
 
     public NimGameImpl() {
         stones = 23;
@@ -21,13 +22,14 @@ public class NimGameImpl implements Game {
         }
     }
 
-    private void playRounds() {
+    private void playRounds() { // Integration
         spielerzug();
         computerzug();
     }
 
     private void spielerzug() {
-        int zug;
+        if(isGameOver()) return;
+
 
         while(true) {
             System.out.printf("Es gibt %s Steine. Bitte nehmen Sie 1,2 oder 3\n", stones);
@@ -35,26 +37,31 @@ public class NimGameImpl implements Game {
             if(zug >=1 && zug <= 3) break;
             System.out.println("Ungueltiger zug");
         }
-        stones -= zug;
+       terminateTurn("Spieler");
     }
     private void computerzug() {
+        if(isGameOver()) return;
         final int zuege[] = {3,1,1,2};
-        int zug;
 
-        if(stones == 1) {
-            System.out.println("Du hast nur Glueck gehabt!");
-
-            return;
-        }
-
-        if(stones < 1) {
-            System.out.println("Du Loser!");
-
-            return;
-        }
 
         zug = zuege[stones % 4];
         System.out.printf("Computer nimmt %s Steine.", zug);
+        terminateTurn("Computer");
+    }
+
+    private void terminateTurn(String player) {  // Integration
+        updateBoard();
+        printGameoverMessageIfGameIsOver(player);
+    }
+
+    private void printGameoverMessageIfGameIsOver(final String player) { // Opereration
+        if(isGameOver())
+            System.out.println(player + " hat verloren");
+    }
+
+
+    // Implemtierungssumpf ------------------------------------------
+    private void updateBoard() {
         stones -= zug;
     }
 
