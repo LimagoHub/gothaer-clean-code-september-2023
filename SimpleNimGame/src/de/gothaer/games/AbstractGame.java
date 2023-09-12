@@ -17,7 +17,7 @@ public abstract class AbstractGame<BOARD, TURN> implements  Game{
 
     private TURN turn;
 
-    public AbstractGame(final Writer writer) {
+    protected AbstractGame(final Writer writer) {
         this.writer = writer;
     }
 
@@ -75,6 +75,7 @@ public abstract class AbstractGame<BOARD, TURN> implements  Game{
 
     private void setActivePlayerAndInitiateHisTurn(final Player<BOARD, TURN> player) {
         setCurrentPlayer(player);
+        prepare();
         playSingleTurn();
     }
 
@@ -108,6 +109,10 @@ public abstract class AbstractGame<BOARD, TURN> implements  Game{
 
     protected void write(String message) {
         writer.write(message);
+    }
+
+    protected void prepare() {
+        // NOP
     }
     //----- Sumpf
 

@@ -25,4 +25,9 @@ public class NimGameImpl extends AbstractGame<Integer,Integer> {
     protected boolean isTurnValid() {
         return getTurn() >= 1 && getTurn() <= 3;
     }
+
+    @Override
+    protected void prepare() {
+        getWriter().write(getCurrentPlayer().getName() + "ist am Zug");
+    }
 }
