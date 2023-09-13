@@ -1,8 +1,10 @@
-package de.gothaer.generator;
+package de.gothaer.generator.impl;
+
+import de.gothaer.generator.IntGenerator;
 
 import java.util.function.Function;
 
-public class SequenceGenerator implements IntGenerator{
+public class SequenceGenerator implements IntGenerator {
 
     private int oldvalue;
     private Function<Integer,Integer> function;

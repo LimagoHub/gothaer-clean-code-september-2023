@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.Instant;
 
-public class TimeMeasure implements java.lang.reflect.InvocationHandler {
+public class TimeMeasureDecorator implements java.lang.reflect.InvocationHandler {
 
     private Object obj;
 
@@ -13,10 +13,10 @@ public class TimeMeasure implements java.lang.reflect.InvocationHandler {
         return java.lang.reflect.Proxy.newProxyInstance(
                 obj.getClass().getClassLoader(),
                 obj.getClass().getInterfaces(),
-                new TimeMeasure(obj));
+                new TimeMeasureDecorator(obj));
     }
 
-    private TimeMeasure(Object obj) {
+    private TimeMeasureDecorator(Object obj) {
         this.obj = obj;
     }
 

@@ -14,8 +14,8 @@ public class ArrayClient {
     public void go() {
         arrayFiller.fill(feld);
         // Do something with array
-        for (int i = 0; i < 10; i++) {
-            System.out.println(feld[i]);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(feld[i]);
+//        }
     }
 }
