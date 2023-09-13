@@ -2,9 +2,12 @@ package de.gothaer.bootstrap;
 
 import de.gothaer.client.ArrayClient;
 import de.gothaer.collections.IntArrayFiller;
+import de.gothaer.collections.impl.ParallelArrayFiller;
 import de.gothaer.collections.impl.SequentialArrayFiller;
 import de.gothaer.generator.IntGenerator;
+import de.gothaer.generator.IntGeneratorBuilder;
 import de.gothaer.generator.impl.RandomGenerator;
+import de.gothaer.generator.impl.RandomGeneratorBuilder;
 import de.gothaer.time.TimeMeasureDecorator;
 
 public class Bootstrap {
@@ -30,7 +33,11 @@ public class Bootstrap {
     }
 
     private static void createAndRunClientWithThreads(final int threadCount) {
-        System.out.println("Noch nicht implementiert");
+       final IntGeneratorBuilder builder = new RandomGeneratorBuilder();
+       IntArrayFiller arrayFiller = new ParallelArrayFiller(builder,threadCount);
+       arrayFiller = (IntArrayFiller) TimeMeasureDecorator.newInstance(arrayFiller);
+        final ArrayClient client = new ArrayClient(arrayFiller);
+        client.go();
     }
 
     private static IntArrayFiller createSequentialArrayFiller() {
